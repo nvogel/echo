@@ -1,0 +1,12 @@
+language: go
+go:
+- '1.10'
+deploy:
+  provider: releases
+  api_key:
+    secure: QvsV5U5I2lKu7/MW/RrMeN4e3Ff1jhFO2RFn6lCQfWmg8qnQUooTvV21Y69kECli4O4p9TKFcbTPB6F+qVmuiAn6PE7FR4Qh8tlzoC9uNK6KsKJN7pi+dDBeU+WP8sxNUeDe9zzu8chFONyBZl/7JFDFeGiXTngI1ML/X2tNvzbgRflUxgq2TJmNIfnE8ji0XuPX8XUmQ0ae/JoUxw4BzX3ddBgOINK5rh0OWWsG5FgihZm8sMuJsZzZ6okgv0uoNuLkrdpCXwG8osU9iDvTppYseBRbgzTNKUKhWO9nZIjJoo7LIegfD5QXJdJwoicNq6BoGS2eZLWoRFMQVepNHaJb0Q6oJhNL4lOQjRy44/pmzXimKWW4imStzk/UY+6athyUUuhpSusCWhBOifweGk31RntsFnNIcd7CooMsMjAI2OAQOf3giOgNhU2jNXEEyG7aJe5VLLxyrRFpEVbnsK2P7RW0qSBpd5sr9G4OfxdxPcZbiBzrxOH5CPg99yWu/jsezw+NrV24fIeMLmsEB8s+F33aPnvB1OmLwV8uW6fq8tRw07s6wsYsp6fxldGe/CJeUuDKPP9ASnHvzyPsMxAujnNaoKtD9rbrzIJN3Pov6G00c1X1DYevpQJhTuqSgDtaTK+koKtdbuP/QqYTb2kAiQHUNLbYoXctSL62ga0=
+  file: echo
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: nvogel/echo
