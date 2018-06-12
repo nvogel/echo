@@ -42,9 +42,9 @@ $(GOMETALINTER): ### Install Gometalinter if needed
 
 .PHONY: help
 help: ## Help
-	@echo '-------------------------------'
+	@echo '--------------------------------------------------------------------------'
 	@grep -E '### .*$$' $(MAKEFILE_LIST) | grep -v '@grep' | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@echo "---"
 	@echo "Platforms are $(PLATFORMS)"
 	@echo "GOMETALINTER is $(GOMETALINTER)"
-	@echo '-------------------------------'
+	@echo '--------------------------------------------------------------------------'
