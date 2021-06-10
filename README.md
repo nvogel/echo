@@ -20,3 +20,12 @@ cd echo
 dep ensure
 go build
 ```
+
+# CI
+
+https://docs.travis-ci.com/user/deployment/releases/
+
+````
+docker run --rm -ti -v "$PWD":/usr/src/myapp ruby:2.5 /bin/bash
+gem install travis
+```
