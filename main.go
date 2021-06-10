@@ -13,7 +13,7 @@ func main() {
     port := "8080"
     val, ok := os.LookupEnv("PORT")
     if !ok {
-        log.Print("Port not set")
+        log.Printf("PORT env not set, default to %s", port)
     } else {
         port = val
     }
@@ -23,6 +23,6 @@ func main() {
 
     router := handlers.Router()
 
-    log.Print("The service is ready to listen and serve.")
+    log.Print("The service is ready to listen and serve")
 	log.Fatal(http.ListenAndServe(":" + port, router))
 }
