@@ -8,6 +8,9 @@ import (
 
 // home is a simple HTTP handler function which writes a response.
 func home(w http.ResponseWriter, _ *http.Request) {
-	fmt.Fprint(w, "Hello! Your request was processed.")
-    log.Print("/home")
+	_, err := fmt.Fprint(w, "Hello! Your request was processed.")
+	if err != nil {
+        log.Printf("Could not write: %v", err)
+    }
+	log.Print("/home")
 }

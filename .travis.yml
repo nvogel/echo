@@ -5,8 +5,6 @@ script:
   - make lint
   - make test
   - make release -j3
-#before_deploy:
-#  - make release -j3
 deploy:
   provider: releases
   api_key:

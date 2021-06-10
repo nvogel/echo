@@ -6,8 +6,11 @@ import (
 	"net/http"
 )
 
-// home is a simple HTTP handler function which writes a response.
+// root is a simple HTTP handler function which writes a response.
 func root(w http.ResponseWriter, _ *http.Request) {
-	fmt.Fprint(w, "/help")
+	_, err := fmt.Fprint(w, "Root")
+	if err != nil {
+        log.Printf("Could not write: %v", err)
+    }
     log.Print("/root")
 }
