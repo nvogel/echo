@@ -18,19 +18,10 @@ func whoami(w http.ResponseWriter, req *http.Request) {
         return
     }
 
-    appVersion := "X.Y.Z"
-    val, ok := os.LookupEnv("APP_VERSION")
-    if !ok {
-        log.Print("APP_VERSION env not set")
-    } else {
-        appVersion = val
-    }
-
     xForwardedFor := req.Header.Get("X-Forwarded-For")
     clientIp := req.RemoteAddr
 
     info := struct {
-        AppVersion   string `json:"appVersion"`
         BuildTime string `json:"buildTime"`
         Commit    string `json:"commit"`
         Release   string `json:"release"`
@@ -38,7 +29,7 @@ func whoami(w http.ResponseWriter, req *http.Request) {
         XForwardedFor string `json:"x-forwarded-for"`
         ClientIp      string `json:"client"`
     }{
-        appVersion, version.BuildTime, version.Commit, version.Release, hostname, xForwardedFor, clientIp,
+        version.BuildTime, version.Commit, version.Release, hostname, xForwardedFor, clientIp,
     }
 
     body, err := json.Marshal(info)
