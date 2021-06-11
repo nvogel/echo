@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"os"
 	"html/template"
-	"path"
 )
 
 type Profile struct {
@@ -24,8 +23,21 @@ func root(w http.ResponseWriter, _ *http.Request) {
 
 	profile := Profile{color}
 
-	fp := path.Join("templates", "index.html")
-	tmpl, err := template.ParseFiles(fp)
+	tmpl, err := template.New("foo").Parse(`
+<!DOCTYPE html>
+<html>
+<body style="background-color:{{ .Color }};">
+
+<h1>{{ .Color }}</h1>
+<div>
+    <p>
+    <a href="./whoami">Who am i</a>
+
+    </p>
+</div>
+</body>
+</html>
+	`)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	  return
