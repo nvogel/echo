@@ -9,6 +9,8 @@ import (
 
 type Profile struct {
 	Color   string
+	Hostname string
+	Kind string
   }
 
 // root is a simple HTTP handler function which writes a response.
@@ -21,19 +23,33 @@ func root(w http.ResponseWriter, _ *http.Request) {
         color = val
     }
 
-	profile := Profile{color}
+	kind := "dog"
+    val2, ok := os.LookupEnv("KIND")
+    if !ok {
+        log.Print("KIND env not set")
+    } else {
+        kind = val2
+    }
+
+    hostname, err := os.Hostname()
+
+    if err != nil {
+        log.Printf("Could not get hostname: %v", err)
+        http.Error(w, http.StatusText(http.StatusServiceUnavailable), http.StatusServiceUnavailable)
+        return
+    }
+
+
+	profile := Profile{color, hostname, kind}
 
 	tmpl, err := template.New("foo").Parse(`
 <!DOCTYPE html>
 <html>
-<body style="background-color:{{ .Color }};">
+<body>
 
-<h1>{{ .Color }}</h1>
+<p><em style="background-color:{{ .Color }}">?</em> <em>This is a {{ .Color }}</em> <em>{{ .Kind }}</em></p>
 <div>
-    <p>
-    <a href="./whoami">Who am i</a>
-
-    </p>
+<p style="font-size: 0.5em">Generated on {{ .Hostname }} </p>
 </div>
 </body>
 </html>
